@@ -7,8 +7,8 @@ class TwitterAccountsController < ApplicationController
   end
 
   def destroy
-    
-    @twitter_account.delete
+
+    @twitter_account.destroy
     redirect_to root_path, notice: "Account succesfully disconnected"
   end
 
