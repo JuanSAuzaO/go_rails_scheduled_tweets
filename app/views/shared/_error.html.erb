@@ -1,0 +1,13 @@
+<% if obj.errors %>
+    <% fields = [] %>
+    <% obj.errors.each do |key, value| %>
+      <% if !fields.include?(key) %>
+        <% fields << key.to_sym %>
+      <% end %>
+    <% end %>
+    <ul>
+    <% fields.each do |field| %>
+      <li class="mx-auto col-6 ntd text-danger"><%= "#{field.capitalize()} #{obj.errors[field][0]}" %></li>
+    <% end %>
+    </ul>
+<% end %>

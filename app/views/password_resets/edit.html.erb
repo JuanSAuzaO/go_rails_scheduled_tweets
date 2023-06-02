@@ -1,0 +1,18 @@
+<div class="row justify-content-md-center mt-3">
+  <h1 class="text-center">Reset your password</h1>
+  <%= render "./shared/error", obj: @user %>
+  <%= form_with model: @user, url: users_password_reset_edit_path(token: params[:token]),
+  method: :patch, html: { class: "col-6" }  do |f| %>
+    <div class="mb-3">
+      <%= f.label :password, class:"form-label" %>
+      <%= f.password_field :password, class:"form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :password_confirmation, class:"form-label" %>
+      <%= f.password_field :password_confirmation, class:"form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.submit "Sign in" , class:"btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

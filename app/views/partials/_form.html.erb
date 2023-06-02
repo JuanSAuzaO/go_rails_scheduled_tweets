@@ -1,0 +1,27 @@
+<%= form_with model: tweet, html: { class: "col-6" } do |f| %>
+
+    <div class="mb-3">
+      <%= f.label :twitter_account_id, class:"form-label" %>
+      <%= f.collection_select :twitter_account_id, Current.user.twitter_accounts, :id, :username, {} , { class:"form-control" } %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :body, class:"form-label" %>
+      <%= f.text_area :body, class:"form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :publish_at, class:"form-label" %>
+      <%= f.datetime_select :publish_at, class:"form-select" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.button "Schedule", class: "btn btn-primary" %>
+    </div>
+
+<% end %>
+
+<% if function == "edit" %>
+  <%= button_to "Delete Tweet", tweet, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-danger" %>
+<% end %>
+

@@ -1,0 +1,24 @@
+<h1>Tweets</h1>
+
+<ul>
+  <% @tweets.each do |tweet| %>
+    <li class="ntd"> 
+      <img src="<%= tweet.twitter_account.image %>" class="me-3"/>  
+      <%= link_to  tweet.twitter_account.username, "https://twitter.com/#{tweet.twitter_account.username}", class:"me-3"%>
+      <p><%= tweet.body %></p>
+      <% if tweet.published? %>
+        <%= link_to "View Tweet", "https://twitter.com/#{tweet.twitter_account.username}/status/#{tweet.tweet_id}"%>
+      <% else %>
+        <span>Tweet scheduled at <%= l tweet.publish_at, format: :long %></span>
+        <%= link_to "Edit Tweet", edit_tweet_path(tweet) %>
+        <%= link_to "Publish now", "/tweets/#{tweet.id}/publish" %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<% if Current.user.twitter_accounts.any? %>
+  <%= link_to "Schedule a tweet", new_tweet_path, class: "btn btn-primary" %>
+<% else %>
+  <%= link_to "Connect twitter", "/auth/twitter", method: :post, class: "btn btn-primary" %>
+<% end %>

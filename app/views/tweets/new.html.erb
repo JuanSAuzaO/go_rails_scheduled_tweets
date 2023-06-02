@@ -1,0 +1,7 @@
+<div class="row justify-content-md-center mt-3">
+  <h1>Schedule a Tweet</h1>
+
+  <%= render "./shared/error", obj: @tweet %>
+  
+  <%= render "partials/form", tweet:@tweet, function: "new" %>
+</div>
